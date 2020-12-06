@@ -1,10 +1,22 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Route, Link } from 'react-router-dom';
 
-function Header(loggedIn) {
-    return (
-    <header className="header"> <Link to={loggedIn ? '/sign-in' : '/sign-up'}>{loggedIn ? 'Войти' : 'Регистрация'}</Link></header>
-    )
+function Header({userData, handleLogout}) {
+  return (
+      console.log(userData),
+    <header className="header">        
+        <Route exact path='/'>
+      <p>{userData.email}</p>
+              <button onClick={handleLogout}>Выйти</button>
+            </Route>
+            <Route path='/sign-in'>
+                <Link to='sign-up'>Регистрация</Link>
+            </Route>
+            <Route path='/sign-up'>
+                <Link to='sign-in'>Войти</Link>
+            </Route>
+    </header>
+  );
 }
 
 export default Header;

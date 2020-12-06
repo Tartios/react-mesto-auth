@@ -1,11 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-export default function Register(handleRegister) {
+export default function Register({handleRegister}) {
   const [data, setData] = React.useState({
     email: "",
-    password: "",
-    message: "",
+    password: ""
   });
 
   const handleChange = (e) => {

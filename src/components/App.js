@@ -158,19 +158,19 @@ function App() {
     const jwt = localStorage.getItem('jwt');
     if (jwt) {
       getContent(jwt).then((res) => {
-        if (res.email) {
+        if (res) {
           setUserData({
-            email: res.email,
-            password: res.password
+            email: res.data.email
           });
           setLogged(true);
           history.push('/')
         }
       })
+      .catch((err) => console.log(err))
     }
   }
 
-  const handleLogin = (data) => {
+  const handleLogin = (password, email) => {
     authorize(password, email)
     .then((data) => {
       if(data.token) {
@@ -196,18 +196,17 @@ function App() {
   }
 
   const handleRegister = (password, email) => {
+    console.log(password, email)
     register(password, email)
     .then(data => {
-      if(data.jwt) {
-        localStorage.setItem('jwt', data.jwt);
         setUserData({
           email: data.email,
           password: data.password
         });
         setLogged(true);
         history.push('/')
-      }
     })
+    .catch((err) => console.log(err))
   };
 
   const history = useHistory()
@@ -260,10 +259,10 @@ function App() {
           />
 
           <ImagePopup card={selectedCard} onClose={closeAllPopups} />
-          <Header loggedIn={loggedIn} />
-          <BrowserRouter>
+          <Header userData={userData} handleLogout={handleLogout} />
+          {/* <BrowserRouter> */}
             <Switch>
-              <ProtectedRoute path="./" loggedIn={loggedIn} component={Main}
+              <ProtectedRoute path="/" loggedIn={loggedIn} component={Main}
                 onEditProfile={handleEditProfileClick}
                 onEditAvatar={handleEditAvatarClick}
                 onAddPlace={handleAddPlaceClick}
@@ -288,7 +287,7 @@ function App() {
                 {loggedIn ? <Redirect to="/" /> : <Redirect to="/sign-in" />}
               </Route>
             </Switch>
-          </BrowserRouter>
+          {/* </BrowserRouter> */}
           <Footer />
         </ArrCards.Provider>
       </CurrentUserContext.Provider>
