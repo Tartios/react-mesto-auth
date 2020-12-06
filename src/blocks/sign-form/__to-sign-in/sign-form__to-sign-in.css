@@ -2,3 +2,7 @@
     color: white;
     text-decoration: none;
 }
+
+.sign-form__to-sign-in:hover {
+    opacity: .4;
+}

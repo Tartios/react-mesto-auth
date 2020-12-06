@@ -1,16 +1,30 @@
 import React from "react";
 
-export default function InfoTooltipPopup({card, onClose}) {
+export default function InfoTooltipPopup({ isOpen, onClose, req }) {
+  
   return (
-    <div className={`popup popup_type_image ${card.link && "popup_open"}`}>
-      <div className="popup__container popup__container_img">
+    <div className={`popup popup_type_info ${isOpen && "popup_open"} `}>
+      <div className="popup__container">
         <button
           type="button"
-          className="popup__close-button"
           onClick={onClose}
+          className="popup__close-button"
         ></button>
-        <img src={card.link} alt={card.name} className="popup__imgSrc" />
-        <h3 className="popup__title popup__title_img-container"></h3>
+        {req ? (
+          <div>
+            <div className="popup__req-true"></div>
+            <h3 className="popup__info-result">
+              Вы успешно зарегистрировались!
+            </h3>
+          </div>
+        ) : (
+          <div>
+            <div className="popup__req-false"></div>
+            <h3 className="popup__info-result">
+              Что-то пошло не так! Попробуйте еще раз.
+            </h3>
+          </div>
+        )}
       </div>
     </div>
   );

@@ -6,4 +6,14 @@
     width: 358px;
     height: 50px;
     margin-top: 186px;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+
+.sign-form__button:focus {
+    outline: none;
+}
+
+.sign-form__button:hover {
+    opacity: .4;
 }

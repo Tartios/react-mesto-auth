@@ -11,6 +11,10 @@
 @import url(./__save-button/_block/popup__save-button_block.css);
 @import url(./__input/_invalid/popup__input_invalid.css);
 @import url(./__input-error/popup__input-error.css);
+@import url(./__info-result/popup__info-result.css);
+@import url(./__req-true/popup__req-true.css);
+@import url(./__req-false/popup__req-false.css);
+
 .popup {
     display: flex;
     background :rgba(0,0,0,.5);
